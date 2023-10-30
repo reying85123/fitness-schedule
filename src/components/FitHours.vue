@@ -1,7 +1,7 @@
 <template>
   <div class="w-full relative">
     <div
-      v-if="false"
+      v-if="loaded"
       class="w-full h-full absolute flex items-center justify-center backdrop-blur-[1px] bg-white/30"
     >
       <LoadingCircle width="3rem" height="3rem" color="#475569" />
@@ -24,9 +24,15 @@
   </div>
 </template>
 <script setup>
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, ref, watch, defineProps } from 'vue'
 import { useStore } from 'vuex'
 import LoadingCircle from '@/components/LoadingCircle'
+const props = defineProps({
+  loaded: {
+    type: Boolean
+  }
+})
+const loaded = computed(() => props.loaded)
 const store = useStore()
 const timeGroupSelected = ref('daily')
 const timeGroupLabels = computed(() => store.getters['fitHours/getTimeGroupLabels'])
@@ -77,9 +83,5 @@ const optionsSet = computed(() => {
       }
     }
   }
-})
-
-onMounted(() => {
-  //   store.dispatch('fitHours/setFitHours', { daily: [1, 23, 45, 6] })
 })
 </script>

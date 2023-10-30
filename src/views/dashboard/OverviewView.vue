@@ -141,7 +141,7 @@ const getFitHours = async () => {
   } catch (err) {
     console.log(err)
   }
-  doingAjaxTrainingLog.value = false
+  doingAjaxFitHours.value = false
 }
 
 //日期格式化
