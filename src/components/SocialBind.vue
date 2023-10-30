@@ -53,6 +53,7 @@ import LoadingCircle from '@/components/LoadingCircle'
 const store = useStore()
 const baseUrl = window.location.origin
 const lineData = store.getters['socialLogin/getLineData']
+const fbData = store.getters['socialLogin/getFbData']
 const socialState = computed(() => store.getters['socialLogin/getSocialState'])
 const socialBind = computed(() => store.getters['user/getUserSocialBind'])
 const getBind = ref(true)
@@ -63,7 +64,7 @@ const socialLoginSetting = ref([
   {
     name: 'Facebook',
     img: require('@/assets/img/icons/facebook.svg'),
-    url: ''
+    url: `https://www.facebook.com/dialog/oauth?client_id=${fbData.channelId}&redirect_uri=${baseUrl}/member/fb-callback?action=bind&state=${socialState.value}&scope=email,public_profile`
   },
   {
     name: 'Line',

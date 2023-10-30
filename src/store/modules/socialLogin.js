@@ -4,7 +4,11 @@ const state = {
     channelId: process.env.VUE_APP_CHANNEL_ID,
     channelSecret: process.env.VUE_APP_CHANNEL_SECRET
   },
-  fb: {},
+  fb: {
+    apiUrl: process.env.VUE_APP_FB_API,
+    channelId: process.env.VUE_APP_FB_APP_ID,
+    channelSecret: process.env.VUE_APP_FB_APP_SECRET
+  },
   state: ''
 }
 

@@ -7,15 +7,13 @@ import LoginView from '@/views/member/LoginView.vue'
 import SignupView from '@/views/member/SignupView.vue'
 import ResetPasswordView from '@/views/member/ResetPasswordView.vue'
 import LineCallback from '@/views/member/LineCallbackView.vue'
+import FbCallback from '@/views/member/FbCallbackView.vue'
 
 //dashboard
 import Dashboard from '@/views/dashboard/DashboardView.vue'
 import Overview from '@/views/dashboard/OverviewView.vue'
 import Schedule from '@/views/dashboard/ScheduleView.vue'
 import Setting from '@/views/dashboard/SettingView.vue'
-
-//test
-import TestView from '@/views/test/TestView.vue'
 
 const routes = [
   {
@@ -93,16 +91,16 @@ const routes = [
         meta: {
           requireLogin: false
         }
+      },
+      {
+        path: 'fb-callback',
+        name: 'FbCallback',
+        component: FbCallback,
+        meta: {
+          requireLogin: false
+        }
       }
     ]
-  },
-  {
-    path: '/test',
-    name: 'Test',
-    component: TestView,
-    meta: {
-      requireLogin: true
-    }
   }
 ]
 
@@ -115,7 +113,7 @@ router.beforeEach((to, from, next) => {
   const requireLogin = to.meta.requireLogin
   const store = useStore()
   const userToken = store.getters['user/getUserToken']
-  if (to.name === 'LineCallback') {
+  if (to.name === 'LineCallback' || to.name === 'FbCallback') {
     next()
     return
   }

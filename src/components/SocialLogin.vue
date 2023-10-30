@@ -24,6 +24,7 @@ const props = defineProps({
 
 const baseUrl = window.location.origin
 const lineData = store.getters['socialLogin/getLineData']
+const fbData = store.getters['socialLogin/getFbData']
 const socialState = computed(() => store.getters['socialLogin/getSocialState'])
 store.dispatch('socialLogin/setSocialState')
 
@@ -31,7 +32,7 @@ const socialLoginSetting = ref([
   {
     name: 'Facebook',
     img: require('@/assets/img/icons/facebook.svg'),
-    url: ''
+    url: `https://www.facebook.com/dialog/oauth?client_id=${fbData.channelId}&redirect_uri=${baseUrl}/member/fb-callback?action=${props.action}&state=${socialState.value}&scope=email,public_profile`
   },
   {
     name: 'Line',
