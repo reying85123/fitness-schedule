@@ -100,8 +100,8 @@ const mutations = {
 
     state.scheduleData.scheduleTime = scheduleTimeArr
 
-    if (data.weight) state.scheduleData.weight = data.weight
-    if (data.fat) state.scheduleData.fat = data.fat
+    state.scheduleData.weight = isNaN(data.weight) ? 0 : data.weight
+    state.scheduleData.fat = isNaN(data.fat) ? 0 : data.fat
 
     state.scheduleData.log.forEach((logPart, logPartIndex) => {
       if (typeof data.log[logPart.name] !== 'undefined' && Array.isArray(data.log[logPart.name])) {
